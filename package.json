@@ -2,7 +2,7 @@
   "name": "lorem-ipsum-kr",
   "version": "1.0.2",
   "description": "A Lorem Ipsum generator for Korean text.",
-  "main": "lib/index.js",
+  "main": "src/index.js",
   "bin": {
     "lorem-ipsum-kr": "./bin/lorem-ipsum-kr.js"
   },
