@@ -1,13 +1,13 @@
-# lorem-ipsum-kor
+# lorem-ipsum-kr
 
-`lorem-ipsum-kor` is a Lorem Ipsum text generator for the Korean language. This library generates placeholder text in Korean and is useful for web development, design, and publishing.
+`lorem-ipsum-kr` is a Lorem Ipsum text generator for the Korean language. This library generates placeholder text in Korean and is useful for web development, design, and publishing.
 
 ## Installation
 
 To install the library, use npm:
 
-```
-npm install lorem-ipsum-kor
+```bash
+npm install lorem-ipsum-kr
 ```
 
 ## Usage
@@ -17,9 +17,9 @@ The library can be used in Node.js to generate Korean Lorem Ipsum text in units 
 ### Node.js Example
 
 ```js
-const loremIpsumKorean = require("lorem-ipsum-kor");
+const loremIpsumKR = require("lorem-ipsum-kr");
 
-const text = loremIpsumKorean({
+const text = loremIpsumKR({
   count: 5, // Number of units to generate
   units: "sentences", // 'words', 'sentences', or 'paragraphs'
 });
@@ -32,7 +32,7 @@ console.log(text);
 You can also generate Lorem Ipsum text from the command line:
 
 ```bash
-lorem-ipsum-kor --count 5 --units words
+lorem-ipsum-kr --count 5 --units words
 ```
 
 #### CLI Options
@@ -44,15 +44,15 @@ lorem-ipsum-kor --count 5 --units words
 #### CLI Example
 
 ```bash
-lorem-ipsum-kor --count 3 --units paragraphs --format html
+lorem-ipsum-kr --count 3 --units paragraphs --format html
 ```
 
 ## API Options
 
-The `loremIpsumKorean` function provides various options to fine-tune the generated text.
+The `loremIpsumKR` function provides various options to fine-tune the generated text.
 
 ```js
-const loremIpsumKorean = require("lorem-ipsum-kor");
+const loremIpsumKR = require("lorem-ipsum-kr");
 
 const options = {
   count: 3, // Number of units (words, sentences, or paragraphs)
@@ -66,7 +66,7 @@ const options = {
   suffix: "\n", // String separator between paragraphs (default: newline)
 };
 
-const text = loremIpsumKorean(options);
+const text = loremIpsumKR(options);
 console.log(text);
 ```
 
@@ -90,24 +90,12 @@ If you'd like to contribute to this project, feel free to fork the repository, m
 
 ## License
 
-This software is licensed under the MIT License
+This software is licensed under the MIT License.
 
 Copyright (c) 2024 goosull
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
