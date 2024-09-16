@@ -1,7 +1,6 @@
 // src/index.ts
 
-// JSON 데이터를 배열로 변경
-// 일반 단어 리스트
+// JSON array of common Korean words for generating Lorem Ipsum text
 const words = [
   "계절이",
   "지나가는",
@@ -123,7 +122,7 @@ const words = [
   "무성할",
 ];
 
-// 문장을 끝내는 단어 리스트
+// List of words used to end sentences
 const endingWords = [
   "있습니다.",
   "것입니다.",
@@ -135,6 +134,14 @@ const endingWords = [
   "수 있습니다.",
 ];
 
+/**
+ * Function to validate that a lower bound is not greater than an upper bound.
+ * Throws an error if the validation fails.
+ *
+ * @param {number} lowerBound - The minimum bound.
+ * @param {number} upperBound - The maximum bound.
+ * @param {string} boundType - A description of the bounds being validated.
+ */
 const validateBounds = (
   lowerBound: number,
   upperBound: number,
@@ -147,6 +154,19 @@ const validateBounds = (
   }
 };
 
+/**
+ * Interface defining options for the Lorem Ipsum text generator.
+ *
+ * @property {number} [count=1] - The number of units to generate.
+ * @property {"words" | "sentences" | "paragraphs"} [units="sentences"] - The type of unit to generate.
+ * @property {number} [sentenceLowerBound=5] - The minimum number of words per sentence.
+ * @property {number} [sentenceUpperBound=15] - The maximum number of words per sentence.
+ * @property {number} [paragraphLowerBound=3] - The minimum number of sentences per paragraph.
+ * @property {number} [paragraphUpperBound=7] - The maximum number of sentences per paragraph.
+ * @property {"plain" | "html"} [format="plain"] - The format of the output.
+ * @property {function} [random=Math.random] - A custom random function.
+ * @property {string} [suffix="\n"] - The suffix to use between paragraphs.
+ */
 interface LoremIpsumOptions {
   count?: number;
   units?: "words" | "sentences" | "paragraphs";
@@ -159,94 +179,121 @@ interface LoremIpsumOptions {
   suffix?: string;
 }
 
-// 기본 옵션을 사용해 Lorem Ipsum 텍스트를 생성하는 함수
+/**
+ * Main function to generate Lorem Ipsum text in Korean.
+ *
+ * @param {LoremIpsumOptions} options - The options for the text generator.
+ * @returns {string} - The generated Lorem Ipsum text.
+ */
 const loremIpsumKR = (options: LoremIpsumOptions = {}) => {
   const {
-    count = 1,
-    units = "sentences",
-    sentenceLowerBound = 5,
-    sentenceUpperBound = 15,
-    paragraphLowerBound = 3,
-    paragraphUpperBound = 7,
-    format = "plain",
-    random = Math.random,
-    suffix = "\n",
+    count = 1, // Default number of units
+    units = "sentences", // Default unit type
+    sentenceLowerBound = 5, // Default minimum number of words per sentence
+    sentenceUpperBound = 15, // Default maximum number of words per sentence
+    paragraphLowerBound = 3, // Default minimum number of sentences per paragraph
+    paragraphUpperBound = 7, // Default maximum number of sentences per paragraph
+    format = "plain", // Default output format
+    random = Math.random, // Default random function
+    suffix = "\n", // Default paragraph suffix
   } = options;
 
-  // 유효하지 않은 units 옵션 처리
+  // Ensure units is a valid option
   const validUnits = ["words", "sentences", "paragraphs"];
   const finalUnits = validUnits.includes(units) ? units : "sentences";
 
   let output = "";
 
-  // 랜덤으로 일반 단어를 가져오는 함수
+  /**
+   * Function to randomly select a word from the `words` array.
+   *
+   * @returns {string} - A random word from the list.
+   */
   const getRandomWord = (): string => {
     return words[Math.floor(random() * words.length)];
   };
 
-  // 랜덤으로 문장 끝 단어를 가져오는 함수
+  /**
+   * Function to randomly select a sentence-ending word from the `endingWords` array.
+   *
+   * @returns {string} - A random sentence-ending word.
+   */
   const getEndingWord = (): string => {
     return endingWords[Math.floor(random() * endingWords.length)];
   };
 
-  // 문장을 생성하는 함수
+  /**
+   * Function to generate a single sentence.
+   *
+   * @returns {string} - A generated sentence.
+   */
   const generateSentence = (): string => {
-    // 문장 생성 전에 단어 수 범위 확인
+    // Validate sentence word count bounds
     validateBounds(
       sentenceLowerBound,
       sentenceUpperBound,
       "Sentence word count"
     );
 
+    // Randomly determine sentence length
     const sentenceLength =
       Math.floor(random() * (sentenceUpperBound - sentenceLowerBound + 1)) +
       sentenceLowerBound;
 
     let sentence = "";
 
-    // 문장 중간 부분을 생성
+    // Generate sentence by concatenating random words
     for (let i = 0; i < sentenceLength - 1; i++) {
       sentence += getRandomWord() + " ";
     }
 
-    // 마지막 단어는 문장을 끝내는 단어로 설정
+    // End the sentence with a randomly chosen ending word
     sentence += getEndingWord();
     return sentence.trim();
   };
 
-  // 문단을 생성하는 함수
+  /**
+   * Function to generate a paragraph consisting of multiple sentences.
+   *
+   * @returns {string} - A generated paragraph.
+   */
   const generateParagraph = (): string => {
-    // 문단 생성 전에 문장 수 범위 확인
+    // Validate paragraph sentence count bounds
     validateBounds(
       paragraphLowerBound,
       paragraphUpperBound,
       "Paragraph sentence count"
     );
 
-    // 정확한 문장 수를 결정
+    // Randomly determine the number of sentences in the paragraph
     const sentenceCount =
       Math.floor(random() * (paragraphUpperBound - paragraphLowerBound + 1)) +
       paragraphLowerBound;
 
     let paragraph: string[] = [];
 
-    // 결정된 문장 수만큼 문장 생성
+    // Generate the paragraph by concatenating generated sentences
     for (let i = 0; i < sentenceCount; i++) {
       paragraph.push(generateSentence());
     }
 
-    // 문장들을 공백으로 합치되, 마지막에 추가적인 공백이 없도록 처리
+    // Join sentences with spaces
     return paragraph.join(" ");
   };
 
+  // Generate output based on the specified units
   if (finalUnits === "words") {
+    // Generate words
     output = Array.from({ length: count }, getRandomWord).join(" ");
   } else if (finalUnits === "sentences") {
+    // Generate sentences
     output = Array.from({ length: count }, generateSentence).join(" ");
   } else if (finalUnits === "paragraphs") {
+    // Generate paragraphs
     output = Array.from({ length: count }, generateParagraph).join(suffix);
   }
 
+  // Return formatted output (either plain text or HTML)
   return format === "html" ? `<p>${output}</p>` : output;
 };
 
