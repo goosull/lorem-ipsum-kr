@@ -1,0 +1,30 @@
+{
+  "name": "lorem-ipsum-kr",
+  "version": "1.0.0",
+  "description": "A Lorem Ipsum generator for Korean text.",
+  "main": "lib/index.js",
+  "bin": {
+    "lorem-ipsum-kr": "./bin/lorem-ipsum-kr.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lorem",
+    "ipsum",
+    "placeholder",
+    "text",
+    "dummy",
+    "filler",
+    "kor",
+    "korean",
+    "KR"
+  ],
+  "author": "goosull <soswon0602@gmail.com> (https://github.com/goosull)",
+  "license": "MIT",
+  "dependencies": {
+    "lorem-ipsum-kor": "file:",
+    "lorem-ipsum-kornpm": "file:",
+    "lorem-ipsum-kr": "file:"
+  }
+}
