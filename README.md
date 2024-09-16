@@ -27,6 +27,21 @@ const text = loremIpsumKR({
 console.log(text);
 ```
 
+### ES6 Example
+
+You can import `lorem-ipsum-kr` in an ES6 module using the `import` statement.
+
+```js
+import loremIpsumKR from "lorem-ipsum-kr"; // import module
+
+const text = loremIpsumKR({
+  count: 5, // Number of units to generate
+  units: "sentences", // 'words', 'sentences', or 'paragraphs'
+});
+
+console.log(text);
+```
+
 ### CLI Usage
 
 You can also generate Lorem Ipsum text from the command line:
